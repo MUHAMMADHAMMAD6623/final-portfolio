@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="mouse-background"></div>
+    <header>
+        <nav class="navbar">
+            <div class="left">
+                <div class="empty"></div>
+                <img src="images/logo.webp" alt="logo" id="mouse-big">
+                <div class="menu">
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                </div>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html" id="mouse-big">Home</a></li>
+                    <li><a href="about.html" id="mouse-big">About</a></li>
+                    <li><a href="contact.html" id="mouse-big">Contact</a></li>
+                    <li><a href="#" id="mouse-big">Services</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="services">
+        <h1 class="service-heading">Services</h1>
+        <div class="service-container">
+            <div class="box">
+                <h2>HTML CSS JS Website Development</h2>
+                <p>I create awesome and visually appealing websites using HTML, CSS, and JavaScript, combining clean design with smooth functionality to deliver great user experiences across all devices, ensuring responsive layouts and optimized performance.</p>
+            </div>
+            <div class="box">
+                <h2>React JS Website Dvelopment</h2>
+                <p>I create fully functional and dynamic front-end websites using React JS, focusing on building interactive user interfaces, ensuring smooth user experiences, and optimizing performance for speed and efficiency.</p>
+            </div>
+            <div class="box">
+                <h2>Wordpress Website Development</h2>
+                <p>I build complete full-stack websites using WordPress, developing both the front-end and back-end to offer custom functionality, seamless content management, and smooth integration with plugins and APIs.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="logo">
+            <img src="images/logo.webp" alt="">
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="index.html" id="mouse-big">Home</a></li>
+                <li><a href="#" id="mouse-big">About</a></li>
+                <li><a href="contact.html" id="mouse-big">Contact</a></li>
+                <li><a href="services.html" id="mouse-big">Services</a></li>
+            </ul>
+        </div>
+        <div class="footer-text">
+            <p>&copy; 2024 All Rights Reserved by <a href="mailto:mhammaad.tahir123@gmail.com" id="mouse-big"
+                    style="font-weight: 600;color: black;text-decoration: none;">Hammad</a></p>
+        </div>
+    </footer>
+    <script>
+        const menuicon = document.querySelector(".menu");
+        const navmenu = document.querySelector(".right");
+        const serviceheading = document.querySelector('.service-heading')
+        const serviceBox = document.querySelectorAll('.box')
+        
+        menuicon.addEventListener("click", () => {
+            menuicon.classList.toggle("clicked");
+            const currentHeight = window.getComputedStyle(navmenu).height;
+
+            if (currentHeight === "0px" || currentHeight === "0") {
+                navmenu.style.height = "100vh";
+            } else {
+                navmenu.style.height = "0px";
+            }
+        });
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
+                else {
+                    entry.target.classList.remove('in-view')
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(serviceheading)
+        serviceBox.forEach(box => {
+            observer.observe(box)
+        })
+
+        window.addEventListener("mousemove", (e) => {
+            const mouse = document.querySelector(".mouse-background");
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            mouse.style.left = `${posX}px`;
+            mouse.style.top = `${posY}px`;
+
+            mouse.animate(
+                {
+                    left: `${posX}px`,
+                    top: `${posY}px`,
+                },
+                { duration: 350, fill: "forwards" }
+            );
+        });
+
+        // Mouse hover effects for links
+        const links = document.querySelectorAll("#mouse-big");
+        const mouse = document.querySelector(".mouse-background");
+
+        links.forEach((link) => {
+            link.addEventListener("mouseenter", () => {
+                mouse.style.width = "40px";
+                mouse.style.height = "40px";
+            });
+
+            link.addEventListener("mouseleave", () => {
+                mouse.style.width = "30px";
+                mouse.style.height = "30px";
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

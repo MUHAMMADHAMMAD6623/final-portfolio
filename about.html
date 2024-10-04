@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="mouse-background"></div>
+    <header>
+        <nav class="navbar">
+            <div class="left">
+                <div class="empty"></div>
+                <img src="images/logo.webp" alt="logo" id="mouse-big">
+                <div class="menu">
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                </div>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html" id="mouse-big">Home</a></li>
+                    <li><a href="#" id="mouse-big">About</a></li>
+                    <li><a href="contact.html" id="mouse-big">Contact</a></li>
+                    <li><a href="services.html" id="mouse-big">Services</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="about">
+        <h1 class="about-heading">About Me</h1>
+        <div class="about-desc">
+            <p>Hey there! I'm Hammad, a passionate front-end developer with a love for creating beautiful and functional
+                websites. My journey into the world of web development began with a simple curiosity about how websites
+                work, and over time, it has grown into a deep passion. I'm constantly learning, experimenting, and
+                improving my skills, whether it's building responsive layouts, optimizing performance, or crafting
+                seamless user experiences.</p>
+            <p>At just 13 years old, I dove headfirst into the exciting world of HTML, CSS, and JavaScript, crafting my
+                first websites from scratch. From understanding how to structure web pages to making them visually
+                appealing, I found joy in every line of code I wrote. As I grew, so did my ambition and curiosity,
+                pushing me to explore more advanced tools and technologies. WordPress became a significant part of my
+                toolkit, allowing me to expand into the world of dynamic and content-driven websites, where I learned to
+                create custom themes, optimize user experiences, and offer versatility to businesses.</p>
+        </div>
+        <div class="my-journey">
+            <p style="font-weight: 600;">My Journey includes:</p>
+            <p>
+            <h3>Learning HTML & CSS</h3>
+            I started learning the basics of HTML and CSS at a young age, experimenting with simple websites and
+            layouts. Understanding how structure and style come together was an exciting discovery for me.
+            <h3>Getting Deeper into JavaScript</h3>
+
+            After mastering the essentials of HTML and CSS, I moved on to JavaScript. This opened up a whole new realm
+            of possibilities—interactivity, dynamic content, and the ability to make websites truly come to life.
+            <h3>Exploring WordPress</h3>
+
+            As my skills grew, I ventured into WordPress, learning how to create custom themes, design layouts, and
+            manage content efficiently. WordPress allowed me to take static websites to a more dynamic and user-friendly
+            level.
+            <h3>Building React Applications</h3>
+
+            React was my next big challenge. Learning its component-based structure, hooks, and state management
+            concepts helped me build powerful single-page applications. React brought structure to my projects and
+            allowed me to optimize performance.
+            <h3>Working on Projects</h3>
+
+            Throughout my journey, I’ve worked on numerous personal projects—ranging from a todo list with localStorage
+            integration, to a password strength checker, to creating dynamic calculators for vinyl and other materials.
+            Each project has contributed to my learning and growth as a developer.
+            </p>
+        </div>
+    </div>
+    <footer>
+        <div class="logo">
+            <img src="images/logo.webp" alt="">
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="index.html" id="mouse-big">Home</a></li>
+                <li><a href="#" id="mouse-big">About</a></li>
+                <li><a href="contact.html" id="mouse-big">Contact</a></li>
+                <li><a href="services.html" id="mouse-big">Services</a></li>
+            </ul>
+        </div>
+        <div class="footer-text">
+            <p>&copy; 2024 All Rights Reserved by <a href="mailto:mhammaad.tahir123@gmail.com" id="mouse-big"
+                    style="font-weight: 600;color: black;text-decoration: none;">Hammad</a></p>
+        </div>
+    </footer>
+    <script>
+        const aboutHeading = document.querySelector('.about-heading')
+        const aboutDesc = document.querySelector('.about-desc')
+        const myJourney = document.querySelector('.my-journey')
+        const menuicon = document.querySelector(".menu");
+        const navmenu = document.querySelector(".right");
+        
+        menuicon.addEventListener("click", () => {
+            menuicon.classList.toggle("clicked");
+            const currentHeight = window.getComputedStyle(navmenu).height;
+
+            if (currentHeight === "0px" || currentHeight === "0") {
+                navmenu.style.height = "100vh";
+            } else {
+                navmenu.style.height = "0px";
+            }
+        });
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
+                else {
+                    entry.target.classList.remove('in-view')
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(aboutHeading)
+        observer.observe(aboutDesc)
+        observer.observe(myJourney)
+
+
+
+        window.addEventListener("mousemove", (e) => {
+            const mouse = document.querySelector(".mouse-background");
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            mouse.style.left = `${posX}px`;
+            mouse.style.top = `${posY}px`;
+
+            mouse.animate(
+                {
+                    left: `${posX}px`,
+                    top: `${posY}px`,
+                },
+                { duration: 350, fill: "forwards" }
+            );
+        });
+
+        // Mouse hover effects for links
+        const links = document.querySelectorAll("#mouse-big");
+        const mouse = document.querySelector(".mouse-background");
+
+        links.forEach((link) => {
+            link.addEventListener("mouseenter", () => {
+                mouse.style.width = "40px";
+                mouse.style.height = "40px";
+            });
+
+            link.addEventListener("mouseleave", () => {
+                mouse.style.width = "30px";
+                mouse.style.height = "30px";
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>

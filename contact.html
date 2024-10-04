@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="mouse-background"></div>
+    <header>
+        <nav class="navbar">
+            <div class="left">
+                <div class="empty"></div>
+                <img src="images/logo.webp" alt="logo" id="mouse-big">
+                <div class="menu">
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                    <div class="bars"></div>
+                </div>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="index.html" id="mouse-big">Home</a></li>
+                    <li><a href="about.html" id="mouse-big">About</a></li>
+                    <li><a href="#" id="mouse-big">Contact</a></li>
+                    <li><a href="services.html" id="mouse-big">Services</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section class="contact">
+        <div class="form">
+            <h1 class="contact-heading">Contact Me</h1>
+            <div class="inputs">
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email Address">
+            </div>
+            <textarea class="message" placeholder="Your Message"></textarea>
+            <button class="button"><a href="index.html" style="color: black; text-decoration: none;">Submit</a></button>
+        </div>
+        <div class="info">
+            <div class="phone">
+                <div class="phone-icon icon">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Phone</h3>
+                </div>
+                <div class="phone-info contact-info">
+                    <p>+92 324 4799171</p>
+                </div>
+            </div>
+            <div class="email">
+                <div class="email-icon icon">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email</h3>
+                </div>
+                <div class="email-info contact-info">
+                    <p>mhammaad.tahir123@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="logo">
+            <img src="images/logo.webp" alt="">
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="index.html" id="mouse-big">Home</a></li>
+                <li><a href="about.html" id="mouse-big">About</a></li>
+                <li><a href="#" id="mouse-big">Contact</a></li>
+                <li><a href="services.html" id="mouse-big">Services</a></li>
+            </ul>
+        </div>
+        <div class="footer-text">
+            <p>&copy; 2024 All Rights Reserved by <a href="mailto:mhammaad.tahir123@gmail.com" id="mouse-big"
+                    style="font-weight: 600;color: black;text-decoration: none;">Hammad</a></p>
+        </div>
+    </footer>
+    <script>
+        const formBox = document.querySelector('.form')
+        const infoBox = document.querySelector('.info')
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target);
+                }
+                else {
+                    entry.target.classList.remove('in-view')
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(formBox)
+        observer.observe(infoBox)
+        const menuicon = document.querySelector(".menu");
+  const navmenu = document.querySelector(".right");
+        menuicon.addEventListener("click", () => {
+    menuicon.classList.toggle("clicked");
+    const currentHeight = window.getComputedStyle(navmenu).height;
+
+    if (currentHeight === "0px" || currentHeight === "0") {
+      navmenu.style.height = "100vh";
+    } else {
+      navmenu.style.height = "0px";
+    }
+  });
+
+        window.addEventListener("mousemove", (e) => {
+            const mouse = document.querySelector(".mouse-background");
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            mouse.style.left = `${posX}px`;
+            mouse.style.top = `${posY}px`;
+
+            mouse.animate(
+                {
+                    left: `${posX}px`,
+                    top: `${posY}px`,
+                },
+                { duration: 350, fill: "forwards" }
+            );
+        });
+
+        // Mouse hover effects for links
+        const links = document.querySelectorAll("#mouse-big");
+        const mouse = document.querySelector(".mouse-background");
+
+        links.forEach((link) => {
+            link.addEventListener("mouseenter", () => {
+                mouse.style.width = "40px";
+                mouse.style.height = "40px";
+            });
+
+            link.addEventListener("mouseleave", () => {
+                mouse.style.width = "30px";
+                mouse.style.height = "30px";
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>
