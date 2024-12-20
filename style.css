@@ -637,6 +637,9 @@ footer .footer-text p{
       .projects-section .projects-container .project-card .thumbnail {
         height: 150px;
       }
+      .projects-section .projects-container #project3 .thumbnail{
+        height: 150px !important;
+      } 
       .contact{
         flex-direction: column;
       }
@@ -830,11 +833,11 @@ footer .footer-text p{
             flex-direction: column;
         }
 }
-@media (min-width:490px) and (max-width:930px) {
+/* @media (min-width:490px) and (max-width:930px) {
       .projects-section .projects-container .project-card:nth-child(3) .thumbnail{
         height: 240px;
       }
-}
+} */
 @media (max-width: 680px) {
     .skills .skill-container .col div{
         width: 100%;
